@@ -6,10 +6,11 @@ class Map{
         this.longRange = 0;
     }
     
-    load(){
+    load(mapFile1){
         let object = this;
+        let mapFile = mapFile1;
         $.ajax({
-            url: "maps/grandPlan.xml",
+            url: "maps/"+mapFile+"Plan.xml",
             type:"GET"
         }).done(function( xmlDoc ) {
             var nodes = xmlDoc.getElementsByTagName("noeud");

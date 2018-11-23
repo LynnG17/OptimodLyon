@@ -6,11 +6,12 @@ class Deliveries{
         this.delNodes = [];
     }
 
-    load(Coord1){
+    load(Coord1, delFile1){
         let object = this;
         let Coord = Coord1;
+        let delFile = delFile1;
         $.ajax({
-            url: "deliveries/dl-grand-12.xml",
+            url: "deliveries/dl-"+delFile+".xml",
             type:"GET"
         }).done(function( xmlDoc ) {
             var del = xmlDoc.getElementsByTagName("demandeDeLivraisons")[0].childNodes;

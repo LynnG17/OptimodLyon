@@ -18,14 +18,16 @@ class Viewer{
         this.dragged = false;
     }
 
-    loadMap(){
+    loadMap(mapFile){
+        this.panSetup(this.Canvas.html);
+        this.zoomSetup(this.Canvas.html);
         this.Map = new Map();
-        this.Map.load();
+        this.Map.load(mapFile);
     }
 
-    loadDeliveries(){
+    loadDeliveries(delFile){
         this.Deliveries = new Deliveries();
-        this.Deliveries.load(this.Map.coord);
+        this.Deliveries.load(this.Map.coord, delFile);
     }
 
     loadRound(){
@@ -64,10 +66,14 @@ class Viewer{
         this.Canvas.range = [0,canvas.height];
         this.Canvas.width = canvas.width;
         this.Canvas.height = canvas.height;
-        this.Canvas.html = canvas;
-    
-        this.panSetup(canvas);
-        this.zoomSetup(canvas);
+        this.Canvas.html = canvas;   
+    }
+
+    reset(){
+        this.zoomLevel = 1;
+        this.deltaX = 0;
+        this.deltaY = 0;
+        this.update();
     }
 
     getRetinaRatio() {
