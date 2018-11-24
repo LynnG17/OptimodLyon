@@ -1,34 +1,36 @@
 package modele;
 
+import java.util.Date;
+
 public class Delivery extends Intersection{
-	private double timeArrival;
-	private double durationDelivery; 
+	private Date timeArrival;
+	private double duration; 
 
 	/**
 	 * @return the timeArrival
 	 */
-	public double getTimeArrival() {
+	public Date getTimeArrival() {
 		return timeArrival;
 	}
 
 	/**
 	 * @return the durationDelivery
 	 */
-	public double getDurationDelivery() {
-		return durationDelivery;
+	public double getDuration() {
+		return duration;
 	}
 
 	/**
 	 * @param durationDelivery the durationDelivery to set
 	 */
-	public void setDurationDelivery(double durationDelivery) {
-		this.durationDelivery = durationDelivery;
+	public void setDuration(double duration) {
+		this.duration = duration;
 	}
 
 	/**
 	 * @param timeArrival the timeArrival to set
 	 */
-	public void setTimeArrival(double timeArrival) {
+	public void setTimeArrival(Date timeArrival) {
 		this.timeArrival = timeArrival;
 	}
 }

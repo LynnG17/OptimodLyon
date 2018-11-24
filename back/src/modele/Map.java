@@ -6,11 +6,10 @@ import java.util.ArrayList;
 public class Map {
 	private double height;
 	private double width;
-	private int nbIntersections;
-	private int nbPerson;
 	///File xml map
 	//File XML livraison
-	private ArrayList<Intersection> listIntersection;
+	private ArrayList<Segment> listSegment;
+	private ArrayList<Delivery> listDelivery;
 
 	/**
 	 * @return the height
@@ -20,46 +19,33 @@ public class Map {
 	}
 
 	/**
-	 * @return the listIntersection
+	 * @return the listDelivery
 	 */
-	public ArrayList<Intersection> getListIntersection() {
-		return listIntersection;
+	public ArrayList<Delivery> getListDelivery() {
+		return listDelivery;
 	}
 
 	/**
-	 * @param listIntersection the listIntersection to set
+	 * @param listDelivery the listDelivery to set
 	 */
-	public void setListIntersection(ArrayList<Intersection> listIntersection) {
-		this.listIntersection = listIntersection;
+	public void setListDelivery(ArrayList<Delivery> listDelivery) {
+		this.listDelivery = listDelivery;
 	}
 
 	/**
-	 * @return the nbPerson
+	 * @return the listSegment
 	 */
-	public int getNbPerson() {
-		return nbPerson;
+	public ArrayList<Segment> getListSegment() {
+		return listSegment;
 	}
 
 	/**
-	 * @param nbPerson the nbPerson to set
+	 * @param listSegment the listSegment to set
 	 */
-	public void setNbPerson(int nbPerson) {
-		this.nbPerson = nbPerson;
+	public void setListSegment(ArrayList<Segment> listSegment) {
+		this.listSegment = listSegment;
 	}
 
-	/**
-	 * @return the nbIntersections
-	 */
-	public int getNbIntersections() {
-		return nbIntersections;
-	}
-
-	/**
-	 * @param nbIntersections the nbIntersections to set
-	 */
-	public void setNbIntersections(int nbIntersections) {
-		this.nbIntersections = nbIntersections;
-	}
 
 	/**
 	 * @return the width
