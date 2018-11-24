@@ -162,7 +162,7 @@ class Viewer{
     zoomSetup(canvas){
         var handleScroll = function(evt){
             var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
-            View.zoom(delta/7);
+            View.zoom(-delta/7);
             return evt.preventDefault() && false;
         };
 
