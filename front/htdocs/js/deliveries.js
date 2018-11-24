@@ -2,8 +2,10 @@ class Deliveries{
     constructor(){
         this.warehouseDisp = {radius: 15, color: "red"};
         this.nodeDisp = {radius: 10, color: "blue"};
+        this.userNodeDisp = {radius: 15, color: "yellow"};
         this.warehouse = null;
         this.delNodes = [];
+        this.userDelNodes = [];
     }
 
     load(Coord1, delFile1){
@@ -37,6 +39,11 @@ class Deliveries{
             let node = this.delNodes[i];
             this.drawCircle(View.norm(node.long, true), View.norm(node.lat, false), this.nodeDisp.radius, this.nodeDisp.color, ctx);
         }
+        for(var i = 0; i < this.userDelNodes.length; i++){
+            let node = this.userDelNodes[i];
+            console.log(node);
+            this.drawCircle(View.norm(node.long, true), View.norm(node.lat, false), this.userNodeDisp.radius, this.userNodeDisp.color, ctx);
+        }
     }
 
     drawCircle(X, Y, R, color, ctx){
@@ -47,4 +54,9 @@ class Deliveries{
         ctx.fill();
         ctx.stroke();
     }
+
+    addUserNode(node){
+        this.userDelNodes.push(node);
+    }
+
 };

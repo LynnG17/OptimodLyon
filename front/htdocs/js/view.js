@@ -132,6 +132,10 @@ class Viewer{
             View.lastX = evt.offsetX;
             View.lastY = evt.offsetY;
             View.dragged = true;
+
+            var node = View.Map.findBestNode(evt.offsetX-View.Canvas.html.offsetTop, evt.offsetY-View.Canvas.html.offsetLeft);
+            View.Deliveries.addUserNode(View.Map.coord[node]);
+            View.update();
         },false);
     
         canvas.addEventListener('mousemove',function(evt){
@@ -145,6 +149,9 @@ class Viewer{
             }
             View.lastX = newX;
             View.lastY = newY;
+
+            var nodeId = View.Map.findBestNode(evt.offsetX-View.Canvas.html.offsetTop, evt.offsetY-View.Canvas.html.offsetLeft);
+            View.Map.highlightNode(nodeId, View.Canvas.ctx);
         },false);
     
         $("body").get(0).addEventListener('mouseup',function(evt){

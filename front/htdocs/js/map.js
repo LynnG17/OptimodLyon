@@ -60,10 +60,39 @@ class Map{
         ctx.stroke();
     }
 
-    distance(start, end){
-        let xTemp = View.norm(end.lat, false)-View.norm(start.lat, false);
-        let yTemp = View.norm(end.long, true)-View.norm(start.long, true);
-        let temp = xTemp*xTemp + yTemp*yTemp;
+    highlightNode(id, ctx){
+        View.update();
+        let node = this.coord[id];
+        this.drawCircle(View.norm(node.long, true), View.norm(node.lat, false), 15, "yellow", ctx);
+    }
+
+    findBestNode(X,Y){
+        let bestNode;
+        let bestDistance = Number.MAX_VALUE;
+        for (var prop in View.Map.coord) {
+            let node = this.coord[prop];
+            let temp = this.distance(X,Y, View.norm(node.long, true), View.norm(node.lat, false));
+            if(temp<bestDistance){
+                bestDistance = temp;
+                bestNode = prop;
+            }
+        }
+        return bestNode;
+    }
+
+    distance(Xa, Ya, Xb, Yb){
+        let tempLat = Yb-Ya;
+        let tempLong = Xb-Xa;
+        let temp = tempLat*tempLat + tempLong*tempLong;
         return Math.sqrt(temp);
+    }
+
+    drawCircle(X, Y, R, color, ctx){
+        ctx.beginPath();
+        ctx.arc(X, Y, R, 0, 2 * Math.PI, false);
+        ctx.fillStyle = color;
+        ctx.globalAlpha = 0.7;
+        ctx.fill();
+        ctx.stroke();
     }
 }
