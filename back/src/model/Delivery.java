@@ -1,4 +1,4 @@
-package modele;
+package model;
 
 public class Delivery extends Intersection{
 	double timeArrival;
