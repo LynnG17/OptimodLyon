@@ -17,7 +17,6 @@ window.onresize = function(event) {
     View.update();
 };
 
-<<<<<<< HEAD
 function changeMap(element){
     switch(element.value){
         case "Big":
