@@ -17,6 +17,7 @@ window.onresize = function(event) {
     View.update();
 };
 
+<<<<<<< HEAD
 function changeMap(element){
     switch(element.value){
         case "Big":
@@ -63,3 +64,28 @@ function loadMap(){
     }
 }
 
+=======
+$("#map").get(0).addEventListener('mousedown',function(evt){
+    document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
+    View.lastX = evt.offsetX;
+    View.lastY = evt.offsetY;
+    View.dragged = true;
+},false);
+
+$("#map").get(0).addEventListener('mousemove',function(evt){
+    console.log("ok");
+    let newX = evt.offsetX;
+    let newY = evt.offsetY;
+    if (View.dragged){
+        View.deltaX += newX-View.lastX;
+        View.deltaY += newY-View.lastY;
+      View.update();
+    }
+    View.lastX = newX;
+    View.lastY = newY;
+},false);
+
+$("body").get(0).addEventListener('mouseup',function(evt){
+    View.dragged = false;
+},false);
+>>>>>>> 88b828a42c70e282c2c3c7f1d39557722537adee
