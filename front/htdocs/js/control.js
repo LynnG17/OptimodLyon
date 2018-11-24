@@ -1,6 +1,7 @@
 var selectedMap = "grand";
 var selectedDel = "dl-grand-12"
 var View;
+var addingPoint = false;
 
 function loadDeliveries(){
     View.loadDeliveries(selectedDel);
@@ -60,6 +61,18 @@ function loadMap(){
             $("#delSelector").html("<option>20</option><option>15</option><option>12</option>");
             selectedDel = selectedMap+"-20";
             break;
+    }
+}
+
+function addPoint(){
+    if(addingPoint){
+        addingPoint = false;
+        $("#undo").removeAttr("disabled");
+        $("#redo").removeAttr("disabled");
+    }else{
+        addingPoint = true;
+        $("#undo").attr("disabled", true);
+        $("#redo").attr("disabled", true);
     }
 }
 

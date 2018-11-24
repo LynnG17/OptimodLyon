@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Livraison</title>
+  <title>OptimodLyon</title>
   <script src="https://code.jquery.com/jquery-3.3.1.js" crossorigin="anonymous"></script>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script>d3.select(self.frameElement).style("height", "140px")</script>
@@ -31,8 +31,8 @@
 
       <div class="col-4" id="infCol">
         <br />
-          <button type="button" class="btn btn-warning" ><i class="fas fa-undo"></i></button>
-          <button type="button" class="btn btn-warning" ><i class="fas fa-redo"></i></button>
+          <button type="button" class="btn btn-warning" id="undo"><i class="fas fa-undo"></i></button>
+          <button type="button" class="btn btn-warning" id="redo"><i class="fas fa-redo"></i></button>
         <hr />
         <div class="form-group">
           <label for="mapSelector">Map</label>
@@ -42,7 +42,7 @@
             <option>Small</option>
           </select>
         </div>
-        <button type="button" class="btn btn-warning" onclick="loadMap();">Load map</button>
+        <button type="button" id="loadMap" class="btn btn-warning" onclick="loadMap();">Load map</button>
         <br />
         <hr />
         <button type="button" class="btn btn-warning" onclick="View.reset();">Reset</button>
@@ -59,7 +59,7 @@
           </select>
         </div>
         <button type="button" class="btn btn-warning" onclick="loadDeliveries();">Load deliveries</button>
-        <button type="button" class="btn btn-warning" onclick="">Add delivery stop</button>
+        <button type="button" class="btn btn-warning" onclick="addPoint();">Add delivery stop</button>
         <br />
         <hr />
         <div class="form-group">

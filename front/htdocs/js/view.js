@@ -4,6 +4,7 @@ class Viewer{
         this.Deliveries = null;
         this.Round = null;
         this.Canvas = {
+            ratio:null,
             html:null,
             ctx:null,
             width:0,
@@ -53,7 +54,8 @@ class Viewer{
         let ratio = this.getRetinaRatio()
         let scaledWidth = width * ratio
         let scaledHeight = height * ratio
-    
+        this.Canvas.ratio = ratio;
+
         d3.select('#map')
             .attr('width', scaledWidth)
             .attr('id', "map")
@@ -133,9 +135,12 @@ class Viewer{
             View.lastY = evt.offsetY;
             View.dragged = true;
 
-            var node = View.Map.findBestNode(evt.offsetX-View.Canvas.html.offsetTop, evt.offsetY-View.Canvas.html.offsetLeft);
-            View.Deliveries.addUserNode(View.Map.coord[node]);
-            View.update();
+            if(addingPoint){
+                let temp = View.Canvas.ratio;
+                var node = View.Map.findBestNode(temp*(evt.offsetX-View.Canvas.html.offsetTop), temp*(evt.offsetY-View.Canvas.html.offsetLeft));
+                View.Deliveries.addUserNode(View.Map.coord[node]);
+                View.update();
+            }
         },false);
     
         canvas.addEventListener('mousemove',function(evt){
@@ -150,8 +155,11 @@ class Viewer{
             View.lastX = newX;
             View.lastY = newY;
 
-            var nodeId = View.Map.findBestNode(evt.offsetX-View.Canvas.html.offsetTop, evt.offsetY-View.Canvas.html.offsetLeft);
-            View.Map.highlightNode(nodeId, View.Canvas.ctx);
+            if(addingPoint){
+                let temp = View.Canvas.ratio;
+                let nodeId = View.Map.findBestNode(temp*(evt.offsetX-View.Canvas.html.offsetTop), temp*(evt.offsetY-View.Canvas.html.offsetLeft));
+                View.Map.highlightNode(nodeId, View.Canvas.ctx);
+            }
         },false);
     
         $("body").get(0).addEventListener('mouseup',function(evt){
