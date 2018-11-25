@@ -21,3 +21,21 @@
     text-align:center;
     display: none;
 }
+
+#mapCtrl{
+    position:absolute;
+    z-index:1400;
+    bottom:2%;
+    right:4%;
+    margin:0px auto;
+    text-align:center;
+}
+
+#stateChange{
+    position:absolute;
+    z-index:1400;
+    bottom:2%;
+    left:4%;
+    margin:0px auto;
+    text-align:center;
+}

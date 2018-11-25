@@ -27,14 +27,22 @@
     <div class="row" style="height:100%;">
       <div class="col-8" id="mapCol">
         <div id="snoAlertBox" class="alert alert-danger" data-alert="alert"></div>
+        <div id="mapCtrl">
+          <button type="button" class="btn btn-dark" id="resetZoom" onclick="Ctrl.View.reset();"><i class="fas fa-times"></i></button>
+          <button type="button" class="btn btn-dark" id="zoom+" onclick="Ctrl.View.zoom(0.2);"><i class="fas fa-search-plus"></i></button>
+          <button type="button" class="btn btn-dark" id="zoom-" onclick="Ctrl.View.zoom(-0.2);"><i class="fas fa-search-minus"></i></button>
+        </div>
+        <div id="stateChange">
+          <button type="button" class="btn btn-dark" id="undo"><i class="fas fa-undo"></i></button>
+          <button type="button" class="btn btn-dark" id="redo"><i class="fas fa-redo"></i></button>
+        </div>
         <canvas id="map"></canvas>
       </div>
 
       <div class="col-4" id="infCol">
         <br />
-          <button type="button" class="btn btn-warning" id="undo"><i class="fas fa-undo"></i></button>
-          <button type="button" class="btn btn-warning" id="redo"><i class="fas fa-redo"></i></button>
-        <hr />
+        <h3>OptimodLyon</h3>
+        <br />
         <div class="form-group">
           <label for="mapSelector">Map</label>
           <select class="form-control" id="mapSelector" onchange="Ctrl.changeMap(this);">
@@ -46,11 +54,6 @@
         <button type="button" id="loadMap" class="btn btn-warning" onclick="Ctrl.loadMap();">Load map</button>
         <br />
         <hr />
-        <button type="button" class="btn btn-warning" id="resetZoom" onclick="Ctrl.View.reset();">Reset</button>
-        <button type="button" class="btn btn-warning" id="zoom+" onclick="Ctrl.View.zoom(0.2);"><i class="fas fa-search-plus"></i></button>
-        <button type="button" class="btn btn-warning" id="zoom-" onclick="Ctrl.View.zoom(-0.2);"><i class="fas fa-search-minus"></i></button>
-        <br />
-        <hr />
         <div class="form-group">
           <label for="delSelector">Delivery plan (number of points)</label>
           <select class="form-control" id="delSelector" onchange="Ctrl.changeDel(this);">
@@ -60,7 +63,8 @@
           </select>
         </div>
         <button type="button" class="btn btn-warning" id="loadDel" onclick="Ctrl.loadDeliveries();">Load deliveries</button>
-        <button type="button" class="btn btn-warning" id="addDel" onclick="Ctrl.addPoint();" disabled>Add delivery stop</button>
+        <button type="button" class="btn btn-warning" id="addDel" onclick="Ctrl.addPoint();" disabled><i class="fas fa-plus"></i></button>
+        <button type="button" class="btn btn-warning" id="rmvDel" onclick="Ctrl.rmvPoint();" disabled><i class="fas fa-minus"></i></button>
         <br />
         <hr />
         <div class="form-group">

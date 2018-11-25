@@ -130,7 +130,8 @@ class Viewer{
     panSetup(){
         this.Canvas.html.addEventListener('mousedown', handleMouseDown,false);
         this.Canvas.html.addEventListener('mousemove', handleMouseMove,false);
-        $("body").get(0).addEventListener('mouseup', handleMouseUp,false);
+        window.addEventListener('mouseup', handleMouseUp,false);
+        this.Canvas.html.addEventListener('mouseup', handleMouseUp,false);
     }
 
     zoomSetup(){
