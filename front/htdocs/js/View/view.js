@@ -17,11 +17,12 @@ class Viewer{
         this.deltaY=0;
         this.lastX; this.lastY;
         this.dragged = false;
+        this.clicked = false;
     }
 
     loadMap(mapFile){
-        this.panSetup(this.Canvas.html);
-        this.zoomSetup(this.Canvas.html);
+        this.panSetup();
+        this.zoomSetup();
         this.Map = new Map();
         this.Map.load(mapFile);
     }
@@ -38,7 +39,7 @@ class Viewer{
 
     update(){
         this.Canvas.ctx.clearRect(0, 0, this.Canvas.width, this.Canvas.height);
-        this.Map.display(this.Canvas.ctx, this);
+        this.Map.display(this.Canvas.ctx);
         if(this.Deliveries != null){
             this.Deliveries.display(this.Canvas.ctx, this);
         }
@@ -114,10 +115,8 @@ class Viewer{
     }
 
     zoom(rate){
-        console.log(rate);
         var temp = this.zoomLevel + rate;
         if(temp>0.8 && temp<3){
-            console.log("hey");
             this.zoomLevel = temp;
             this.update();
             if(rate>0){
@@ -128,53 +127,14 @@ class Viewer{
         }
     }
 
-    panSetup(canvas){
-        canvas.addEventListener('mousedown',function(evt){
-            document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
-            View.lastX = evt.offsetX;
-            View.lastY = evt.offsetY;
-            View.dragged = true;
-
-            if(addingPoint){
-                let temp = View.Canvas.ratio;
-                var node = View.Map.findBestNode(temp*(evt.offsetX-View.Canvas.html.offsetTop), temp*(evt.offsetY-View.Canvas.html.offsetLeft));
-                View.Deliveries.addUserNode(View.Map.coord[node]);
-                View.update();
-            }
-        },false);
-    
-        canvas.addEventListener('mousemove',function(evt){
-            console.log("ok");
-            let newX = evt.offsetX;
-            let newY = evt.offsetY;
-            if (View.dragged){
-                View.deltaX += newX-View.lastX;
-                View.deltaY += newY-View.lastY;
-              View.update();
-            }
-            View.lastX = newX;
-            View.lastY = newY;
-
-            if(addingPoint){
-                let temp = View.Canvas.ratio;
-                let nodeId = View.Map.findBestNode(temp*(evt.offsetX-View.Canvas.html.offsetTop), temp*(evt.offsetY-View.Canvas.html.offsetLeft));
-                View.Map.highlightNode(nodeId, View.Canvas.ctx);
-            }
-        },false);
-    
-        $("body").get(0).addEventListener('mouseup',function(evt){
-            View.dragged = false;
-        },false);
+    panSetup(){
+        this.Canvas.html.addEventListener('mousedown', handleMouseDown,false);
+        this.Canvas.html.addEventListener('mousemove', handleMouseMove,false);
+        $("body").get(0).addEventListener('mouseup', handleMouseUp,false);
     }
 
-    zoomSetup(canvas){
-        var handleScroll = function(evt){
-            var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
-            View.zoom(delta/7);
-            return evt.preventDefault() && false;
-        };
-
-        canvas.addEventListener('DOMMouseScroll',handleScroll,false);
-        canvas.addEventListener('mousewheel',handleScroll,false);
+    zoomSetup(){
+        this.Canvas.html.addEventListener('DOMMouseScroll',handleScroll,false);
+        this.Canvas.html.addEventListener('mousewheel',handleScroll,false);
     }
 }

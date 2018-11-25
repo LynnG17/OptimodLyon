@@ -2,7 +2,7 @@ class Deliveries{
     constructor(){
         this.warehouseDisp = {radius: 15, color: "red"};
         this.nodeDisp = {radius: 10, color: "blue"};
-        this.userNodeDisp = {radius: 15, color: "yellow"};
+        this.userNodeDisp = {radius: 10, color: "green"};
         this.warehouse = null;
         this.delNodes = [];
         this.userDelNodes = [];
@@ -26,7 +26,7 @@ class Deliveries{
                     object.delNodes.push(node);  
                 }
             }
-            View.update();
+            Ctrl.View.update();
         }).fail(function(){
             console.log("Delivery file not loaded !");
         });        
@@ -41,7 +41,6 @@ class Deliveries{
         }
         for(var i = 0; i < this.userDelNodes.length; i++){
             let node = this.userDelNodes[i];
-            console.log(node);
             this.drawCircle(View.norm(node.long, true), View.norm(node.lat, false), this.userNodeDisp.radius, this.userNodeDisp.color, ctx);
         }
     }

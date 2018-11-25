@@ -36,11 +36,11 @@ class Map{
             object.latRange = latRange;
             object.longRange = longRange;
 
-            View.update();
+            Ctrl.View.update();
         });
     }
 
-    display(ctx, view){
+    display(ctx){
         ctx.beginPath();
         //normalize and draw
         //console.log(view);
@@ -54,24 +54,24 @@ class Map{
             //ctx.fillText("Hello World",end.,50);
             //console.log(this.distance(start, end));
 
-            ctx.moveTo(view.norm(start.long, true),view.norm(start.lat, false));
-            ctx.lineTo(view.norm(end.long, true),view.norm(end.lat, false));
+            ctx.moveTo(Ctrl.View.norm(start.long, true),Ctrl.View.norm(start.lat, false));
+            ctx.lineTo(Ctrl.View.norm(end.long, true),Ctrl.View.norm(end.lat, false));
         }
         ctx.stroke();
     }
 
     highlightNode(id, ctx){
-        View.update();
+        Ctrl.View.update();
         let node = this.coord[id];
-        this.drawCircle(View.norm(node.long, true), View.norm(node.lat, false), 15, "yellow", ctx);
+        this.drawCircle(Ctrl.View.norm(node.long, true), Ctrl.View.norm(node.lat, false), 15, "yellow", ctx);
     }
 
     findBestNode(X,Y){
         let bestNode;
         let bestDistance = Number.MAX_VALUE;
-        for (var prop in View.Map.coord) {
+        for (var prop in Ctrl.View.Map.coord) {
             let node = this.coord[prop];
-            let temp = this.distance(X,Y, View.norm(node.long, true), View.norm(node.lat, false));
+            let temp = this.distance(X,Y, Ctrl.View.norm(node.long, true), Ctrl.View.norm(node.lat, false));
             if(temp<bestDistance){
                 bestDistance = temp;
                 bestNode = prop;

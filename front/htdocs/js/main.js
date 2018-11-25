@@ -1,4 +1,7 @@
+var Ctrl;
+
 $( document ).ready(function() {
     console.log( "ready!" );
-    //loadMap();
+    Ctrl = new Controller();
+    Ctrl.loadMap();
 });

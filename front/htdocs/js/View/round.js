@@ -23,7 +23,7 @@ class Round{
                 }
                 object.paths.push(path);
             }
-            View.update();
+            Ctrl.View.update();
         }).fail(function(textStatus, errorThrown){
             console.log("Round file not loaded !");
             console.log(textStatus);
