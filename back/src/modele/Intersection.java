@@ -8,7 +8,7 @@ public class Intersection {
 	private float latitude;
 	private float longitude;
 	
-	ArrayList<Intersection> findSuccessors(){
+	ArrayList<Intersection> findSuccessors(ArrayList<Segment> listSegment){
 		ArrayList<Intersection> listSuccessors = new ArrayList();
 		return listSuccessors;
 	}
