@@ -23,10 +23,10 @@ public class Intersection {
 		Intersection current;
 		for(int i=0; i<listSegment.size(); i++)
 		{
-			current = listSegment(i).getEnd();
+			current = listSegment(i).getStart();
 			if(this.equals(current))
 			{
-				listSuccessors.add(current);
+				listSuccessors.add(listSegment(i).getEnd());
 			}
 		}
 		return listSuccessors;

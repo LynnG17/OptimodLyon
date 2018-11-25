@@ -8,7 +8,7 @@ public class Map {
 	private float width;
 	///File xml map
 	//File XML livraison
-	private ArrayList<Segment> listSegment;
+ 	private ArrayList<Segment> listSegment;
 	private ArrayList<Delivery> listDelivery;
 
 	/**
