@@ -3,7 +3,7 @@ package modele;
 public class Segment {
 	private Intersection start;
 	private Intersection end;
-	private double duration;
+	private float duration;
 
 	Intersection getStart() 
 	{
@@ -13,14 +13,14 @@ public class Segment {
 	/**
 	 * @return the duration
 	 */
-	public double getDuration() {
+	public float getDuration() {
 		return duration;
 	}
 
 	/**
 	 * @param duration the duration to set
 	 */
-	public void setDuration(double duration) {
+	public void setDuration(float duration) {
 		this.duration = duration;
 	}
 
