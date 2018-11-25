@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.ArrayList; 
 
 public class Round {
+<<<<<<< HEAD
 	private Date startTime;
 	private Date endTime;
 	private ArrayList<Path> listPath;
@@ -63,5 +64,11 @@ public class Round {
 	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
+=======
+	Date startTime;
+	Date endTime;
+	ArrayList<Path> listPath;
+	Delivery start;
+>>>>>>> master
 	
 }

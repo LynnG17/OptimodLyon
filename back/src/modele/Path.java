@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 public class Path {
+<<<<<<< HEAD
 	private double duration;
 	private ArrayList<Segment> listSegment;
 	
@@ -32,4 +33,10 @@ public class Path {
 		Delivery end = (listSegment.get(listSegment.size()-1)).getStart();
 		return end;
 	}
+=======
+	double duration;
+	ArrayList<Segment> listSegment;
+	Delivery start;
+	Delivery end;
+>>>>>>> master
 }

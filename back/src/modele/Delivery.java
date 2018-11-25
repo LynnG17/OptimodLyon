@@ -1,5 +1,6 @@
 package modele;
 
+<<<<<<< HEAD
 import java.util.Date;
 
 public class Delivery extends Intersection{
@@ -33,4 +34,9 @@ public class Delivery extends Intersection{
 	public void setTimeArrival(Date timeArrival) {
 		this.timeArrival = timeArrival;
 	}
+=======
+public class Delivery extends Intersection{
+	double timeArrival;
+	double durationDelivery; //commentaire test
+>>>>>>> master
 }

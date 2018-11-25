@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 public class Map {
+<<<<<<< HEAD
 	private double height;
 	private double width;
 	///File xml map
@@ -67,6 +68,15 @@ public class Map {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+=======
+	double height;
+	double width;
+	int nbIntersections;
+	int nbPerson;
+	///File xml map
+	//File XML livraison
+	ArrayList<Intersection> listIntersection;
+>>>>>>> master
 	
 }
 
