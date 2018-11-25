@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Delivery extends Intersection{
 	private Date timeArrival;
-	private double duration; 
+	private float duration; 
 
 	/**
 	 * @return the timeArrival
@@ -16,14 +16,14 @@ public class Delivery extends Intersection{
 	/**
 	 * @return the durationDelivery
 	 */
-	public double getDuration() {
+	public float getDuration() {
 		return duration;
 	}
 
 	/**
 	 * @param durationDelivery the durationDelivery to set
 	 */
-	public void setDuration(double duration) {
+	public void setDuration(float duration) {
 		this.duration = duration;
 	}
 

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class Intersection {
 	private int id;
-	private int latitude;
-	private int longitude;
+	private float latitude;
+	private float longitude;
 	
 	ArrayList<Intersection> findSuccessors(){
 		ArrayList<Intersection> listSuccessors = new ArrayList();
@@ -16,28 +16,28 @@ public class Intersection {
 	/**
 	 * @return the latitude
 	 */
-	public int getLatitude() {
+	public float getLatitude() {
 		return latitude;
 	}
 
 	/**
 	 * @param latitude the latitude to set
 	 */
-	public void setLatitude(int latitude) {
+	public void setLatitude(float latitude) {
 		this.latitude = latitude;
 	}
 
 	/**
 	 * @return the longitude
 	 */
-	public int getLongitude() {
+	public float getLongitude() {
 		return longitude;
 	}
 
 	/**
 	 * @param longitude the longitude to set
 	 */
-	public void setLongitude(int longitude) {
+	public void setLongitude(float longitude) {
 		this.longitude = longitude;
 	}
 

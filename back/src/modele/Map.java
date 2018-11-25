@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 public class Map {
-	private double height;
-	private double width;
+	private float height;
+	private float width;
 	///File xml map
 	//File XML livraison
 	private ArrayList<Segment> listSegment;
@@ -14,7 +14,7 @@ public class Map {
 	/**
 	 * @return the height
 	 */
-	public double getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
@@ -50,21 +50,21 @@ public class Map {
 	/**
 	 * @return the width
 	 */
-	public double getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
 	/**
 	 * @param width the width to set
 	 */
-	public void setWidth(double width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
 	/**
 	 * @param height the height to set
 	 */
-	public void setHeight(double height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 	
