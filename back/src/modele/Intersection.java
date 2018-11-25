@@ -4,21 +4,14 @@ import java.util.ArrayList;
 
 
 public class Intersection {
-<<<<<<< HEAD
 	private int id;
 	private int latitude;
 	private int longitude;
-=======
-	int id;
-	int latitude;
-	int longitude;
->>>>>>> master
 	
 	ArrayList<Intersection> findSuccessors(){
 		ArrayList<Intersection> listSuccessors = new ArrayList();
 		return listSuccessors;
 	}
-<<<<<<< HEAD
 
 	/**
 	 * @return the latitude
@@ -61,7 +54,5 @@ public class Intersection {
 	public void setId(int id) {
 		this.id = id;
 	}
-=======
->>>>>>> master
 }
 

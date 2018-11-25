@@ -1,7 +1,6 @@
 package modele;
 
 public class Segment {
-<<<<<<< HEAD
 	private Intersection start;
 	private Intersection end;
 	private double duration;
@@ -29,10 +28,5 @@ public class Segment {
 	{
 		return end;
 	}
-=======
-	Intersection start;
-	Intersection end;
-	double duration;
->>>>>>> master
 	
 }
