@@ -55,3 +55,15 @@ window.onresize = function(event) {
     Ctrl.View.setupCanvas();
     Ctrl.View.update();
 };
+
+function alertBox(message){
+    $("#snoAlertBox").text(message);
+    $("#snoAlertBox").fadeIn();
+    closeSnoAlertBox();
+}
+
+function closeSnoAlertBox(){
+    window.setTimeout(function () {
+      $("#snoAlertBox").fadeOut(300)
+    }, 3000);
+} 
