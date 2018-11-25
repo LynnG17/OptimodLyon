@@ -8,8 +8,27 @@ public class Intersection {
 	private float latitude;
 	private float longitude;
 	
-	ArrayList<Intersection> findSuccessors(){
+	public boolean equals(Intersection i2){
+		if(this.id == i2.id)
+		{
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public ArrayList<Intersection> findSuccessors(ArrayList<Segment> listSegment){
 		ArrayList<Intersection> listSuccessors = new ArrayList();
+		Intersection current;
+		for(int i=0; i<listSegment.size(); i++)
+		{
+			current = listSegment(i).getEnd();
+			if(this.equals(current))
+			{
+				listSuccessors.add(current);
+			}
+		}
 		return listSuccessors;
 	}
 

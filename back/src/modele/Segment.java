@@ -24,7 +24,7 @@ public class Segment {
 		this.duration = duration;
 	}
 
-	Intersection getEnd()
+	public Intersection getEnd()
 	{
 		return end;
 	}
