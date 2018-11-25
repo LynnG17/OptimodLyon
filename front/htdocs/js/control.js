@@ -6,6 +6,7 @@ var addingPoint = false;
 function loadDeliveries(){
     View.loadDeliveries(selectedDel);
     $("#loadRounds").removeAttr("disabled");
+    $("#loadDel").removeAttr("disabled");
 }
 
 $("#mapSelector").on("show.bs.dropdown", function(event){
@@ -69,10 +70,20 @@ function addPoint(){
         addingPoint = false;
         $("#undo").removeAttr("disabled");
         $("#redo").removeAttr("disabled");
+        $("#loadRounds").removeAttr("disabled");
+        $("#loadMap").removeAttr("disabled");
+        $("#loadDel").removeAttr("disabled");
+
+        $("#addDel").text("Add delivery stop").addClass("btn-warning").removeClass("btn-success");
     }else{
         addingPoint = true;
         $("#undo").attr("disabled", true);
         $("#redo").attr("disabled", true);
+        $("#loadDel").attr("disabled", true);
+        $("#loadRounds").attr("disabled", true);
+        $("#loadMap").attr("disabled", true);
+
+        $("#addDel").text("Valider").addClass("btn-success").removeClass("btn-warning");
     }
 }
 
