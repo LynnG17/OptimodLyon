@@ -75,4 +75,21 @@ class Deliveries{
         }
     }
 
+    removeNode(node){
+        for(var i=0; i<this.delNodes.length; i++){
+            let node1 = this.delNodes[i];
+            if(node.lat === node1.lat && node.long === node1.long){
+                this.delNodes.splice(i,1);
+                return;
+            }
+        }
+        for(var i=0; i<this.userDelNodes.length; i++){
+            let node1 = this.userDelNodes[i];         
+            if(node.lat === node1.lat && node.long === node1.long){
+                this.userDelNodes.splice(i,1);
+                return;
+            }   
+        }
+        alertBox("No point found !");
+    }
 };

@@ -1,6 +1,8 @@
 function handleScroll(evt){
     let delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
-    Ctrl.View.zoom(delta/7);
+    let rate = delta/7;
+    Ctrl.View.zoom(rate);
+    
     return evt.preventDefault() && false;
 };
 
@@ -12,7 +14,7 @@ function handleMouseDown(evt){
     document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
     View.lastX = ratio*evt.offsetX;
     View.lastY = ratio*evt.offsetY;
-    View.clicked = true;      
+    Ctrl.View.clicked = true;
 }
 
 function handleMouseMove(evt){
@@ -37,7 +39,7 @@ function handleMouseMove(evt){
     }
     
 
-    if(Ctrl.addingPoint){
+    if(Ctrl.addingPoint || Ctrl.removePoint){
         let nodeId = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
         View.Map.highlightNode(nodeId, View.Canvas.ctx);
     }
@@ -54,6 +56,12 @@ function handleMouseUp(evt){
             let ratio = View.Canvas.ratio;
             var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
             View.Deliveries.addUserNode(View.Map.coord[node]);
+            View.update();
+        } 
+        if(Ctrl.removePoint && this.tagName==="CANVAS"){
+            let ratio = View.Canvas.ratio;
+            var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
+            View.Deliveries.removeNode(View.Map.coord[node]);
             View.update();
         } 
     }

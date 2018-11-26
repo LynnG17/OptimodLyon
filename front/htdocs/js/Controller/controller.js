@@ -9,8 +9,6 @@ class Controller{
 
     loadDeliveries(){
         this.View.loadDeliveries(this.selectedDel);
-        $("#loadRounds").removeAttr("disabled");
-        $("#addDel").removeAttr("disabled");
         this.enableButtons(["#loadRounds", "#addDel", "#rmvDel"]);
     }
 
