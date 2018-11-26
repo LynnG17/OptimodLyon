@@ -116,7 +116,7 @@ class Viewer{
 
     zoom(rate){
         var temp = this.zoomLevel + rate;
-        if(temp>1 && temp<3){
+        if(temp>0.8 && temp<3){
             this.zoomLevel = temp;
             /*if(rate>0){
                 this.deltaY += (this.Canvas.height/2)*rate;
