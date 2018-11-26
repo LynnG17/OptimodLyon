@@ -3,13 +3,12 @@ class Controller{
         this.selectedMap = "moyen";
         this.selectedDel = "dl-grand-12"
         this.View;
-        this.addingPoint = false;
-        this.removePoint = false;
+        this.state = new InitState();
     }
 
     loadDeliveries(){
         this.View.loadDeliveries(this.selectedDel);
-        this.enableButtons(["#loadRounds", "#addDel", "#rmvDel"]);
+        this.state = new DelState();
     }
 
     loadRound(){
@@ -45,7 +44,7 @@ class Controller{
         this.View = new Viewer();
         this.View.setupCanvas();
         this.View.loadMap(this.selectedMap);
-
+        this.state = new MapState();
         switch(this.selectedMap){
             case "petit":
                 $("#delSelector").html("<option>6</option><option>3</option>");
@@ -63,40 +62,20 @@ class Controller{
     }
 
     addPoint(){
-        if(this.addingPoint){
-            this.enableButtons(["#undo", "#redo", "#loadDel", "#loadRounds", "#loadMap", "#rmvDel", "#mapSelector", "#delSelector"]);
-            this.addingPoint = false;
-            $("#addDel").html("<i class='fas fa-plus'></i>").addClass("btn-warning").removeClass("btn-success");
-        }else{
-            this.addingPoint = true;
-            this.disableButtons(["#undo", "#redo", "#loadDel", "#loadRounds", "#loadMap", "#rmvDel", "#mapSelector", "#delSelector"]);
-            $("#addDel").html("<i class='fas fa-check'></i>").addClass("btn-success").removeClass("btn-warning");
+        if(this.state.constructor.name === "AddPointState"){
+            this.state = new DelState();
+        }else if(this.state.constructor.name === "DelState"){
+            this.state= new AddPointState();
         }
     }
 
     rmvPoint(){
-        if(this.removePoint){
-            this.removePoint = false;
-            this.enableButtons(["#undo", "#redo", "#loadDel", "#loadRounds", "#loadMap", "#addDel", "#mapSelector", "#delSelector"]);
-            $("#rmvDel").html("<i class='fas fa-minus'></i>").addClass("btn-warning").removeClass("btn-success");
-        }else{
-            this.removePoint = true;
-            this.disableButtons(["#undo", "#redo", "#loadDel", "#loadRounds", "#loadMap", "#addDel", "#mapSelector", "#delSelector"]);
-            $("#rmvDel").html("<i class='fas fa-check'></i>").addClass("btn-success").removeClass("btn-warning");
+        if(this.state.constructor.name === "RmvPointState"){
+            this.state = new DelState();
+        }else if(this.state.constructor.name === "DelState"){
+            this.state= new RmvPointState();
         }
     }
 
-    disableButtons(list){
-        for(var i=0; i<list.length; i++){
-            let el = list[i];
-            $(el).attr("disabled", true);
-        }
-    }
 
-    enableButtons(list){
-        for(var i=0; i<list.length; i++){
-            let el = list[i];
-            $(el).removeAttr("disabled");
-        }
-    }
 }
