@@ -4,8 +4,32 @@ import java.util.ArrayList;
 
 
 public class Path {
-	double duration;
-	ArrayList<Segment> listSegment;
-	Delivery start;
-	Delivery end;
+	private float duration;
+	private ArrayList<Segment> listSegment;
+	
+	Delivery getStartDelivery()
+	{
+		Delivery start = (listSegment.get(0)).getStart();
+		return start;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public float getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public void setDuration(float duration) {
+		this.duration = duration;
+	}
+
+	Delivery getEndDelivery()
+	{
+		Delivery end = (listSegment.get(listSegment.size()-1)).getStart();
+		return end;
+	}
 }
