@@ -2,6 +2,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Dijkstra",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "algorithmic.Dijkstra",
+            "args": ""
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MapManagment",
             "request": "launch",
             "cwd": "${workspaceFolder}",

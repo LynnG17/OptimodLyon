@@ -8,10 +8,27 @@ public class Intersection {
 	private float latitude;
 	private float longitude;
 	
-	ArrayList<Intersection> findSuccessors(ArrayList<Segment> listSegment){
+	/**
+	 * Constructor
+	 * @param anId
+	 * @param aLatitude
+	 * @param aLongitude
+	 */
+	public Intersection (int anId, float aLatitude, float aLongitude){
+		id = anId;
+		latitude = aLatitude;
+		longitude = aLongitude;
+	}
+
+	public Intersection (){
+		id=0;
+		latitude=0;
+		longitude=0;
+	}
+	/*ArrayList<Intersection> findSuccessors(ArrayList<Segment> listSegment){
 		ArrayList<Intersection> listSuccessors = new ArrayList();
 		return listSuccessors;
-	}
+	}*/
 
 	/**
 	 * @return the latitude
