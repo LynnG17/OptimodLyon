@@ -61,7 +61,7 @@ class AddPointState{
             console.log("CANVAS");
             let ratio = View.Canvas.ratio;
             var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
-            View.Deliveries.addUserNode(View.Map.coord[node]);
+            View.Deliveries.addUserNode(node);
             View.update();
         }
     }

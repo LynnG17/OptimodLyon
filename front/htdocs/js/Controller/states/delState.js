@@ -9,7 +9,6 @@ class DelState{
     }
     
     handleScroll(evt){
-        console.log("d");
         let delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
         let rate = delta/7;
         Ctrl.View.zoom(rate);
@@ -19,7 +18,6 @@ class DelState{
     
     
     handleMouseDown(evt){
-        console.log("e");
         let View = Ctrl.View;
         
         let ratio = View.Canvas.ratio;
@@ -50,33 +48,19 @@ class DelState{
             View.lastX = newX;
             View.lastY = newY;
         }
-        
-    
-        if(Ctrl.addingPoint || Ctrl.removePoint){
-            let nodeId = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
-            View.Map.highlightNode(nodeId, View.Canvas.ctx);
-        }
+
     }
     
     handleMouseUp(evt){
-        //console.log(this.tagName);
         let View = Ctrl.View;
         View.clicked=false;
         if(View.dragged){
             View.dragged = false;
-        }else{
-            if(Ctrl.addingPoint && this.tagName==="CANVAS"){
-                let ratio = View.Canvas.ratio;
-                var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
-                View.Deliveries.addUserNode(View.Map.coord[node]);
-                View.update();
-            } 
-            if(Ctrl.removePoint && this.tagName==="CANVAS"){
-                let ratio = View.Canvas.ratio;
-                var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
-                View.Deliveries.removeNode(View.Map.coord[node]);
-                View.update();
-            } 
+        }else if(evt.srcElement.tagName==="CANVAS"){
+            let ratio = View.Canvas.ratio;
+            var node = View.Map.findBestNode(ratio*(evt.offsetX-View.Canvas.html.offsetTop), ratio*(evt.offsetY-View.Canvas.html.offsetLeft));
+            View.Deliveries.nodeInfos(node);
+            View.update();
         }
     }
 }

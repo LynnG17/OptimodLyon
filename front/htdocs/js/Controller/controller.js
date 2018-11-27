@@ -64,16 +64,20 @@ class Controller{
     addPoint(){
         if(this.state.constructor.name === "AddPointState"){
             this.state = new DelState();
+            this.View.update();
         }else if(this.state.constructor.name === "DelState"){
             this.state= new AddPointState();
+            this.View.update();
         }
     }
 
     rmvPoint(){
         if(this.state.constructor.name === "RmvPointState"){
             this.state = new DelState();
+            this.View.update();
         }else if(this.state.constructor.name === "DelState"){
             this.state= new RmvPointState();
+            this.View.update();
         }
     }
 

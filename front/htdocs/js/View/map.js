@@ -53,8 +53,8 @@ class Map{
                 let end = segList[seg].end;
 
 
-                ctx.strokeStyle = "black";
-                ctx.lineWidth = 2;
+                ctx.strokeStyle = "dark";
+                ctx.lineWidth = 3;
                 ctx.moveTo(Ctrl.View.norm(start.longitude, true),Ctrl.View.norm(start.latitude, false));
                 ctx.lineTo(Ctrl.View.norm(end.longitude, true),Ctrl.View.norm(end.latitude, false));
             }
@@ -62,10 +62,9 @@ class Map{
         ctx.stroke();
     }
 
-    highlightNode(id, ctx){
+    highlightNode(node, ctx){
         Ctrl.View.update();
-        let node = this.coord[id];
-        this.drawCircle(Ctrl.View.norm(node.long, true), Ctrl.View.norm(node.lat, false), 15, "yellow", ctx);
+        this.drawCircle(Ctrl.View.norm(node.longitude, true), Ctrl.View.norm(node.latitude, false), 15, "yellow", ctx);
     }
 
     findBestNode(X,Y){
@@ -73,10 +72,10 @@ class Map{
         let bestDistance = Number.MAX_VALUE;
         for (var prop in Ctrl.View.Map.coord) {
             let node = this.coord[prop];
-            let temp = this.distance(X,Y, Ctrl.View.norm(node.long, true), Ctrl.View.norm(node.lat, false));
+            let temp = this.distance(X,Y, Ctrl.View.norm(node.longitude, true), Ctrl.View.norm(node.latitude, false));
             if(temp<bestDistance){
                 bestDistance = temp;
-                bestNode = prop;
+                bestNode = this.coord[prop];
             }
         }
         return bestNode;

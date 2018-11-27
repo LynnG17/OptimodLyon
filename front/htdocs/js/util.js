@@ -23,3 +23,12 @@ function enableButtons(list){
         $(el).removeAttr("disabled");
     }
 }
+
+function showMessage(text){
+   $("#snoInfoBox").html(text).show(); 
+}
+
+window.onresize = function(event) {
+    Ctrl.View.setupCanvas();
+    Ctrl.View.update();
+};
