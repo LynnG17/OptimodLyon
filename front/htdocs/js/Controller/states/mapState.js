@@ -2,6 +2,7 @@ class MapState{
     constructor(){
         enableButtons(["#undo", "#redo", "#loadDel", "#loadRounds", "#loadMap", "#mapSelector", "#delSelector", "#addDel"]);
         disableButtons(["#addDel", "#rmvDel"]);
+        $("#snoInfoBox").hide();
         console.log("Etat mapState"); 
     }
     

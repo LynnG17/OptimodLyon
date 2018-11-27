@@ -10,6 +10,7 @@
 
 #map{
     background-color: beige;
+    cursor: pointer;
 }
 
 #snoAlertBox{

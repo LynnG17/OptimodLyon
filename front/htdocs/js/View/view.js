@@ -29,7 +29,7 @@ class Viewer{
 
     loadDeliveries(delFile){
         this.Deliveries = new Deliveries();
-        this.Deliveries.load(this.Map.coord, delFile);
+        this.Deliveries.load(delFile);
     }
 
     loadRound(){
@@ -118,13 +118,6 @@ class Viewer{
         var temp = this.zoomLevel + rate;
         if(temp>0.8 && temp<3){
             this.zoomLevel = temp;
-            /*if(rate>0){
-                this.deltaY += (this.Canvas.height/2)*rate;
-                this.deltaX -= (this.Canvas.width/2)*rate; 
-            }else{
-                this.deltaY = this.deltaY/(1-rate);
-                this.deltaX = this.deltaX/(1-rate);
-            }*/
             this.deltaY += (this.Canvas.height/2)*rate;
             this.deltaX -= (this.Canvas.width/2)*rate; 
             this.update();

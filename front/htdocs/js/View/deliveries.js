@@ -12,9 +12,8 @@ class Deliveries{
         this.img.src = 'img/pin.png';
     }
 
-    load(Coord1, delFile1){
+    load(delFile1){
         let object = this;
-        let Coord = Coord1;
         let delFile = delFile1;
         $.ajax({
             url: "http://localhost:8080/deliveries/dl-"+delFile,
@@ -43,12 +42,13 @@ class Deliveries{
             this.drawCircle(View.norm(node.longitude, true), View.norm(node.latitude, false), this.userNodeDisp.radius, this.userNodeDisp.color, ctx);
         }
         if(this.nodeInfo!=null){
-            //console.log(node)
+            
             let node = this.nodeInfo;
+            console.log(node);
 
             ctx.globalAlpha = 0.8;
             ctx.drawImage(this.img, View.norm(node.longitude, true)-47/2,View.norm(node.latitude, false)-75);
-            showMessage("Latitude : "+node.latitude+"<br />Longitude : "+node.longitude);
+            showMessage(true, "Duration : "+node.duration+"<br />Latitude : "+node.latitude+"<br />Longitude : "+node.longitude);
             ctx.beginPath();         
 
         }
@@ -67,13 +67,13 @@ class Deliveries{
         let good = true;
         for(var i=0; i<this.delNodes.length; i++){
             let node1 = this.delNodes[i];
-            if(node === node1){
+            if(this.comparePos(node, node1)){
                 good=false;
             }
         }
         for(var i=0; i<this.userDelNodes.length; i++){
             let node1 = this.userDelNodes[i];         
-            if(node === node1){
+            if(this.comparePos(node, node1)){
                 good=false;
             }   
         }
@@ -85,16 +85,34 @@ class Deliveries{
     }
 
     nodeInfos(node){
+        if(this.comparePos(this.warehouse, node)){
+            if(this.nodeInfo != null && this.comparePos(this.nodeInfo, this.warehouse)){
+                this.nodeInfo=null;
+                showMessage(false);
+                return;
+            }else{
+                this.nodeInfo=this.warehouse;
+                return;
+            }
+        }
         for(var i=0; i<this.delNodes.length; i++){
             let node1 = this.delNodes[i];
-            if(node === node1){
-                if(this.nodeInfo === node1){
+            if(this.comparePos(node, node1)){
+                if(this.nodeInfo != null && this.comparePos(this.nodeInfo, node1)){
                     this.nodeInfo=null;
+                    showMessage(false);
                 }else{
                     this.nodeInfo=node1;
                 }
             }
         }
+    }
+
+    comparePos(node, node1){
+        if(node.longitude === node1.longitude && node.latitude === node1.latitude){
+            return true;
+        }
+        return false;
     }
 
     removeNode(node){

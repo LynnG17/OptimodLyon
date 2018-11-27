@@ -24,8 +24,12 @@ function enableButtons(list){
     }
 }
 
-function showMessage(text){
-   $("#snoInfoBox").html(text).show(); 
+function showMessage(bool, text){
+    if(bool){
+        $("#snoInfoBox").html(text).show();
+    }else{
+        $("#snoInfoBox").hide().html("");
+    }
 }
 
 window.onresize = function(event) {
