@@ -17,26 +17,17 @@ class Deliveries{
         let Coord = Coord1;
         let delFile = delFile1;
         $.ajax({
-            url: "deliveries/dl-"+delFile+".xml",
+            url: "http://localhost:8080/deliveries/dl-"+delFile,
             type:"GET"
-        }).done(function( xmlDoc ) {
-            var del = xmlDoc.getElementsByTagName("demandeDeLivraisons")[0].childNodes;
-            
-            for(var i = 0; i < del.length; i++){
-                let el = del[i];
-                
-                if(el.tagName === "entrepot"){
-                    console.log(Coord[el.getAttribute("adresse")]);
-                    object.warehouse = Coord[el.getAttribute("adresse")];;       
-                }else if(el.tagName === "livraison"){
-                    let node = Coord[el.getAttribute("adresse")];
-                    console.log(Coord[el.getAttribute("adresse")]);
-                    object.delNodes.push(node);  
-                }
+        }).done(function( del ) {
+            object.warehouse = del.warehouse;
+            for(var el in del.listDelivery){
+               object.delNodes.push(del.listDelivery[el]);
             }
             Ctrl.View.update();
         }).fail(function(){
             console.log("Delivery file not loaded !");
+            alertBox("Something wrong happened !");
         });        
     }
 

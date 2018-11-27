@@ -41,7 +41,10 @@ class Map{
             object.longRange = longRange;
             console.log(this.coord);
             Ctrl.View.update();
-        });
+        }).fail(function(){
+            console.log("Map file not loaded !");
+            alertBox("Something wrong happened !");
+        });  
     }
 
     display(ctx){

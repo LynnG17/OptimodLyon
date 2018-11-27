@@ -1,7 +1,7 @@
 class Controller{
     constructor(){
         this.selectedMap = "moyen";
-        this.selectedDel = "dl-grand-12"
+        this.selectedDel = "grand-12";
         this.View;
         this.state = new InitState();
     }
