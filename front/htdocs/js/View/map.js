@@ -1,7 +1,7 @@
 class Map{
     constructor() {
         this.coord = new Object();
-        this.sections = null;
+        this.graph = null;
         this.latRange = 0;
         this.longRange = 0;
     }
@@ -10,23 +10,30 @@ class Map{
         let object = this;
         let mapFile = mapFile1;
         $.ajax({
-            url: "maps/"+mapFile+"Plan.xml",
+            url: "http://localhost:8080/map",
+            data: mapFile,
             type:"GET"
-        }).done(function( xmlDoc ) {
-            var nodes = xmlDoc.getElementsByTagName("noeud");
-            object.sections = xmlDoc.getElementsByTagName("troncon");
-
-            //Init variable containing lattitude and longitude range
+        }).done(function( map ) {
             let latRange = [Number.MAX_VALUE, Number.MIN_VALUE];
             let longRange = [Number.MAX_VALUE, Number.MIN_VALUE];
 
-            //Filling hash table of nodes and lat/long ranges
-            for(var i = 0; i < nodes.length; i++){
-                var lat = nodes[i].getAttribute('latitude');
-                var long = nodes[i].getAttribute('longitude');
-                var id = nodes[i].getAttribute('id');
-                var tab = {lat, long};
-                object.coord[id] = tab;      
+            let graph = map.graph
+            object.graph = graph;
+            for (var seg in graph) {
+                /*!!!!!!! ENDDDD POINT*/
+                
+                object.coord[seg]=graph[seg][0].start;
+            };
+
+            for (var seg in graph) {
+                if(object.coord[graph[seg][0].end.id] === undefined){
+                    object.coord[graph[seg][0].end.id] = ; 
+                }
+            };
+
+            for (var node in object.coord) {
+                let lat = object.coord[node].latitude;
+                let long = object.coord[node].longitude;
                 if(latRange[0]>lat) latRange[0]=lat;
                 if(latRange[1]<lat) latRange[1]=lat;
                 if(longRange[0]>long) longRange[0]=long;
@@ -35,27 +42,25 @@ class Map{
 
             object.latRange = latRange;
             object.longRange = longRange;
-
+            console.log(this.coord);
             Ctrl.View.update();
         });
     }
 
     display(ctx){
         ctx.beginPath();
-        //normalize and draw
-        //console.log(view);
-        //console.log(this);
-        for(var i = 0; i < this.sections.length; i++){
-            let start = this.coord[this.sections[i].getAttribute('origine')];
-            let end = this.coord[this.sections[i].getAttribute('destination')];
-            //var name = sections[i].getAttribute('nomRue');
-            ctx.strokeStyle = "black";
-            ctx.lineWidth = 2;
-            //ctx.fillText("Hello World",end.,50);
-            //console.log(this.distance(start, end));
+        for(var segListId in this.graph){
+            let segList = this.graph[segListId];
+            for(var seg in segList){
+                let start = segList[seg].start;
+                let end = segList[seg].end;
 
-            ctx.moveTo(Ctrl.View.norm(start.long, true),Ctrl.View.norm(start.lat, false));
-            ctx.lineTo(Ctrl.View.norm(end.long, true),Ctrl.View.norm(end.lat, false));
+
+                ctx.strokeStyle = "black";
+                ctx.lineWidth = 2;
+                ctx.moveTo(Ctrl.View.norm(start.longitude, true),Ctrl.View.norm(start.latitude, false));
+                ctx.lineTo(Ctrl.View.norm(end.longitude, true),Ctrl.View.norm(end.latitude, false));
+            }
         }
         ctx.stroke();
     }
