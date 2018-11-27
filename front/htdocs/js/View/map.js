@@ -10,8 +10,7 @@ class Map{
         let object = this;
         let mapFile = mapFile1;
         $.ajax({
-            url: "http://localhost:8080/map",
-            data: mapFile,
+            url: "http://localhost:8080/map/"+mapFile1,
             type:"GET"
         }).done(function( map ) {
             let latRange = [Number.MAX_VALUE, Number.MIN_VALUE];
@@ -20,14 +19,12 @@ class Map{
             let graph = map.graph
             object.graph = graph;
             for (var seg in graph) {
-                /*!!!!!!! ENDDDD POINT*/
-                
                 object.coord[seg]=graph[seg][0].start;
             };
 
             for (var seg in graph) {
                 if(object.coord[graph[seg][0].end.id] === undefined){
-                    object.coord[graph[seg][0].end.id] = ; 
+                    object.coord[graph[seg][0].end.id] = graph[seg][0].end; 
                 }
             };
 
